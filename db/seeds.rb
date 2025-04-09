@@ -7,3 +7,33 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+
+Message.destroy_all
+Chat.destroy_all
+User.destroy_all
+
+first_names = ['Harry', 'Mohamed', 'Kevin', 'Bruno', 'Raheem', 'Marcus', 'Sadio', 'Jack', 'Son', 'Virgil']
+last_names = ['Kane', 'Salah', 'De Bruyne', 'Fernandes', 'Sterling', 'Rashford', 'Mane', 'Grealish', 'Son', 'Van Dijk']
+
+10.times do |i|
+  User.create!(
+    email: "user#{i+1}@example.com",
+    first_name: first_names.sample,  
+    last_name: last_names.sample, 
+  )
+end
+
+10.times do |i|
+    Chat.create!(
+        sender_id: rand(1..10),
+        receiver_id: rand(1..10),
+    )
+end
+
+10.times do |i|
+    Message.create!(
+        chat_id: rand(1..10),
+        user_id: rand(1..10),
+        body: "Message body #{i+1}",
+    )
+end
