@@ -25,15 +25,15 @@ end
 
 10.times do |i|
     Chat.create!(
-        sender_id: rand(1..10),
-        receiver_id: rand(1..10),
+        sender_id: i+1,
+        receiver_id: i+2,
     )
 end
 
 10.times do |i|
     Message.create!(
-        chat_id: rand(1..10),
-        user_id: rand(1..10),
+        chat_id: i+1,
+        user_id: i+3,
         body: "Message body #{i+1}",
     )
 end
