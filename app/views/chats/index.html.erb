@@ -1,0 +1,25 @@
+<div class="container">
+    <h1 class="text-center"> Chat </h1>
+    <div class="table-responsive">
+    <table class="table table-striped table-bordered">
+        <thead class="thead-dark">
+        <tr>
+            <th>Sender ID</th>
+            <th>Receiver ID</th>
+            <th>Details</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% @chats.each do |chat| %>
+            <tr>
+            <td><%= chat.sender_id %></td>
+            <td><%= chat.receiver_id %></td>
+            <td class="text-center">
+                <%= link_to 'Show', chat_path(chat), class: 'btn btn-primary btn-sm' %>
+            </td>
+            </tr>
+        <% end %>
+        </tbody>
+    </table>
+    </div>
+</div>

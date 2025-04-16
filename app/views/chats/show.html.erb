@@ -1,0 +1,23 @@
+<h1 class= "text-center">Chat Details</h1>
+
+<div class="container">
+    <div class="table-responsive">
+        <table class="table table-bordered">
+            <tr>
+                <th>Sender ID</th>
+                <th>Receiver ID</th>
+                <th>Created At</th>
+                <th>Updated At</th>
+            </tr>
+            <tr>
+                <td><%= @chat.sender_id %></td>
+                <td><%= @chat.receiver_id %></td>
+                <td><%= @chat.created_at %></td>
+                <td><%= @chat.updated_at %></td>
+        </table>
+    </div>
+</div>
+
+<div class="text-center">
+    <%= link_to 'Back to all chats', chats_path, class: 'btn btn-secondary' %>
+</div>

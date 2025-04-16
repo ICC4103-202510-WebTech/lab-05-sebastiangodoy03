@@ -1,0 +1,25 @@
+<h1 class= "text-center"> Message Details</h1>
+
+<div class="container">
+    <div class="table-responsive">
+        <table class="table table-bordered">
+            <tr>
+                <th>Chat ID</th>
+                <th>User ID</th>
+                <th>Message Body</th>
+                <th>Created At</th>
+                <th>Updated At</th>
+            </tr>
+            <tr>
+                <td><%= @message.chat_id %></td>
+                <td><%= @message.user_id %></td>
+                <td><%= @message.body %></td>
+                <td><%= @message.created_at %></td>
+                <td><%= @message.updated_at %></td>
+        </table>
+    </div>
+</div>
+
+<div class="text-center">
+    <%= link_to 'Back to all messages', messages_path, class: 'btn btn-secondary' %>
+</div>
