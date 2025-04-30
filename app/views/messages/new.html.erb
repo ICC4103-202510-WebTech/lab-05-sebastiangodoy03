@@ -1,22 +1,26 @@
-<h1>New Message</h1>
+<h1 class="text-center mb-4">New Message</h1>
 
-<%= form_with(model: @message, local: true) do |f| %>
-  <div>
-    <%= f.label :chat_id, "Chat" %>
-    <%= f.select :chat_id, Chat.all.collect { |c| ["Chat ##{c.id}", c.id] }, prompt: "Select chat" %>
+<%= form_with(model: @message, local: true, class: "needs-validation") do |f| %>
+  <div class="mb-3">
+    <%= f.label :chat_id, "Chat", class: "form-label" %>
+    <%= f.select :chat_id, Chat.all.collect { |c| ["Chat ##{c.id}", c.id] }, 
+                 { prompt: "Select chat" }, 
+                 class: "form-select" %>
   </div>
 
-  <div>
-    <%= f.label :user_id, "Author" %>
-    <%= f.select :user_id, User.all.collect { |u| [u.first_name + " " + u.last_name, u.id] }, prompt: "Select author" %>
+  <div class="mb-3">
+    <%= f.label :user_id, "Author", class: "form-label" %>
+    <%= f.select :user_id, User.all.collect { |u| [u.first_name + " " + u.last_name, u.id] }, 
+                 { prompt: "Select author" }, 
+                 class: "form-select" %>
   </div>
 
-  <div>
-    <%= f.label :body, "Message" %>
-    <%= f.text_area :body %>
+  <div class="mb-3">
+    <%= f.label :body, "Message", class: "form-label" %>
+    <%= f.text_area :body, class: "form-control", rows: 5 %>
   </div>
 
-  <div>
-    <%= f.submit "Send Message" %>
+  <div class="text-center">
+    <%= f.submit "Send Message", class: "btn btn-primary" %>
   </div>
 <% end %>
