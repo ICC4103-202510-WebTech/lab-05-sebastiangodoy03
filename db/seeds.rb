@@ -12,7 +12,7 @@ Message.destroy_all
 Chat.destroy_all
 User.destroy_all
 
-first_names = ['Harry', 'Mohamed', 'Kevin', 'Bruno', 'Raheem', 'Marcus', 'Sadio', 'Jack', 'Son', 'Virgil']
+first_names = ['Harry', 'Mohamed', 'Kevin', 'Bruno', 'Raheem', 'Marcus', 'Sadio', 'Jack', 'Heung-Min', 'Virgil']
 last_names = ['Kane', 'Salah', 'De Bruyne', 'Fernandes', 'Sterling', 'Rashford', 'Mane', 'Grealish', 'Son', 'Van Dijk']
 
 10.times do |i|
@@ -22,18 +22,26 @@ last_names = ['Kane', 'Salah', 'De Bruyne', 'Fernandes', 'Sterling', 'Rashford',
     last_name: last_names.sample, 
   )
 end
+users = User.all
 
-10.times do |i|
-    Chat.create!(
-        sender_id: i+1,
-        receiver_id: i+2,
-    )
+10.times do
+  sender = users.sample
+  receiver = users.where.not(id: sender.id).sample 
+
+  Chat.create!(
+    sender_id: sender.id,
+    receiver_id: receiver.id,
+  )
 end
 
+chats = Chat.all
+
 10.times do |i|
-    Message.create!(
-        chat_id: i+1,
-        user_id: i+3,
-        body: "Message body #{i+1}",
-    )
+  chat = chats.sample
+  user = chat.sender
+  Message.create!(
+    chat_id: chat.id,
+    user_id: user.id,
+    body: "Message body #{i+1}",
+  )
 end
