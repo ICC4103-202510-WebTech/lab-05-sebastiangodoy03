@@ -1,0 +1,23 @@
+<h1>Editar Usuario</h1>
+
+<%= form_with(model: @user, local: true) do |form| %>
+  <div>
+    <%= form.label :email %>
+    <%= form.text_field :email %>
+  </div>
+
+  <div>
+    <%= form.label :first_name, "Nombre" %>
+    <%= form.text_field :first_name %>
+  </div>
+
+  <div>
+    <%= form.label :last_name, "Apellido" %>
+    <%= form.text_field :last_name %>
+  </div>
+
+  <div>
+    <%= form.submit "Actualizar Usuario", class: "btn btn-primary" %>
+  </div>
+<% end %>
+<%= link_to 'Volver', users_path, class: 'btn btn-secondary' %>
