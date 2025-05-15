@@ -1,23 +1,47 @@
-<h1 class= "text-center">Chat Details</h1>
+<h2 class="text-center">Chat Details</h1>
 
 <div class="container">
-    <div class="table-responsive">
-        <table class="table table-bordered">
-            <tr>
-                <th>Sender ID</th>
-                <th>Receiver ID</th>
-                <th>Created At</th>
-                <th>Updated At</th>
-            </tr>
-            <tr>
-                <td><%= @chat.sender_id %></td>
-                <td><%= @chat.receiver_id %></td>
-                <td><%= @chat.created_at %></td>
-                <td><%= @chat.updated_at %></td>
-        </table>
-    </div>
-</div>
+  <div class="table-responsive mb-4">
+    <table class="table table-bordered">
+      <tr>
+        <th>Sender Name</th>
+        <th>Receiver Name</th>
+        <th>Created At</th>
+        <th>Updated At</th>
+      </tr>
+      <tr>
+        <td><%= "#{@chat.sender.first_name} #{@chat.sender.last_name}" %></td>
+        <td><%= "#{@chat.receiver.first_name} #{@chat.receiver.last_name}" %></td>
+        <td><%= @chat.created_at %></td>
+        <td><%= @chat.updated_at %></td>
+      </tr>
+    </table>
+  </div>
 
-<div class="text-center">
-    <%= link_to 'Back to all chats', chats_path, class: 'btn btn-secondary' %>
-</div>
+  <h2 class="text-center">Chat Messages</h2>
+    <div class="table-responsive">
+    <% if @chat.messages.any? %>
+        <table class="table table-bordered">
+        <tr>
+            <th>Message ID</th>
+            <th>User Name</th>
+            <th>Content</th>
+            <th>Created At</th>
+        </tr>
+        <% @chat.messages.each do |message| %>
+            <tr>
+            <td><%= message.id %></td>
+            <td><%= "#{message.user.first_name} #{message.user.last_name}" %></td>
+            <td><%= message.body %></td>
+            <td><%= message.created_at %></td>
+            </tr>
+        <% end %>
+        </table>
+    <% else %>
+        <p class="text-center">There are no messages in this chat.</p>
+    <% end %>
+    </div>
+    <div class="text-center">
+    <%= link_to 'Back to Chats', chats_path, class: 'btn btn-primary' %>
+    <%= link_to 'Edit Chat', edit_chat_path(@chat), class: 'btn btn-secondary' %>
+    </div>

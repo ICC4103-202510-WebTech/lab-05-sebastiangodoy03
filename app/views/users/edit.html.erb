@@ -1,23 +1,38 @@
-<h1>Editar Usuario</h1>
+<h1 class="text-center mb-4">Edit User</h1>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <% if @user.errors.any? %>
+        <div class="alert alert-danger">
+          <ul>
+            <% @user.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
 
-<%= form_with(model: @user, local: true) do |form| %>
-  <div>
-    <%= form.label :email %>
-    <%= form.text_field :email %>
-  </div>
+      <%= form_with(model: @user, local: true, class: "needs-validation") do |form| %>
+        <div class="mb-3">
+          <%= form.label :email, class: "form-label" %>
+          <%= form.text_field :email, class: "form-control", placeholder: "Enter an Email" %>
+        </div>
 
-  <div>
-    <%= form.label :first_name, "Nombre" %>
-    <%= form.text_field :first_name %>
-  </div>
+        <div class="mb-3">
+          <%= form.label :first_name, "First Name", class: "form-label" %>
+          <%= form.text_field :first_name, class: "form-control", placeholder: "Enter a First Name" %>
+        </div>
 
-  <div>
-    <%= form.label :last_name, "Apellido" %>
-    <%= form.text_field :last_name %>
-  </div>
+        <div class="mb-3">
+          <%= form.label :last_name, "Last Name", class: "form-label" %>
+          <%= form.text_field :last_name, class: "form-control", placeholder: "Enter a Last Name" %>
+        </div>
 
-  <div>
-    <%= form.submit "Actualizar Usuario", class: "btn btn-primary" %>
+        <div class="d-flex justify-content-between">
+          <%= form.submit "Update User", class: "btn btn-primary" %>
+          <%= link_to 'Back', users_path, class: 'btn btn-secondary' %>
+        </div>
+      <% end %>
+    </div>
   </div>
-<% end %>
-<%= link_to 'Volver', users_path, class: 'btn btn-secondary' %>
+</div>

@@ -8,6 +8,7 @@
             <th>User ID</th>
             <th>Message Body</th>
             <th>Details</th>
+            <th>Edit</th>
         </tr>
         </thead>
         <tbody>
@@ -18,6 +19,9 @@
             <td><%= message.body %></td>
             <td class="text-center">
                 <%= link_to 'Show', message_path(message), class: 'btn btn-secondary btn-sm' %>
+            </td>
+            <td class="text-center">
+                <%= link_to 'Edit', edit_message_path(message), class: 'btn btn-warning btn-sm' %>
             </td>
             </tr>
         <% end %>

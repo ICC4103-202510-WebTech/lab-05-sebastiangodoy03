@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :set_user, only: [:show, :edit, :update]
   def index
     @users = User.all
   end
@@ -26,7 +27,7 @@ class UsersController < ApplicationController
 
   def update
     if @user.update(user_params)
-      redirect_to @user, notice: 'El usuario fue actualizado exitosamente.'
+      redirect_to @user, notice: 'User updated successfully.'
     else
       render :edit, status: :unprocessable_entity
     end

@@ -1,27 +1,74 @@
-<h1 class= "text-center">User Details</h1>
+<h2 class="text-center">User Details</h1>
 
 <div class="container">
-    <div class="table-responsive">
-        <table class="table table-bordered">
-            <tr>
-                <th>ID</th>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Email</th>
-                <th>Created At</th>
-                <th>Updated At</th>
-            </tr>
-            <tr>
-                <td><%= @user.id %></td>
-                <td><%= @user.first_name %></td>
-                <td><%= @user.last_name %></td>
-                <td><%= @user.email %></td>
-                <td><%= @user.created_at %></td>
-                <td><%= @user.updated_at %></td>
-        </table>
-    </div>
-</div>
+  <div class="table-responsive mb-4">
+    <table class="table table-bordered">
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Last Name</th>
+        <th>Email</th>
+        <th>Created At</th>
+        <th>Updated At</th>
+      </tr>
+      <tr>
+        <td><%= @user.id %></td>
+        <td><%= @user.first_name %></td>
+        <td><%= @user.last_name %></td>
+        <td><%= @user.email %></td>
+        <td><%= @user.created_at %></td>
+        <td><%= @user.updated_at %></td>
+      </tr>
+    </table>
+  </div>
 
-<div class="text-center">
-    <%= link_to 'Back to all users', users_path, class: 'btn btn-secondary' %>
+  <h2 class="text-center">User Chats</h2>
+  <div class="table-responsive mb-4">
+    <table class="table table-bordered">
+      <tr>
+        <th>Chat ID</th>
+        <th>Sender Name</th>
+        <th>Receiver Name</th>
+      </tr>
+      <% @user.sent_chats.each do |chat| %>
+        <tr>
+          <td><%= chat.id %></td>
+          <td><%= "#{chat.sender.first_name} #{chat.sender.last_name}" %></td>
+          <td><%= "#{chat.receiver.first_name} #{chat.receiver.last_name}" %></td>
+        </tr>
+      <% end %>
+      <% @user.received_chats.each do |chat| %>
+        <tr>
+          <td><%= chat.id %></td>
+          <td><%= "#{chat.sender.first_name} #{chat.sender.last_name}" %></td>
+          <td><%= "#{chat.receiver.first_name} #{chat.receiver.last_name}" %></td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+
+  <h2 class="text-center">Sent Messages</h2>
+  <div class="table-responsive">
+    <table class="table table-bordered">
+      <tr>
+        <th>Message ID</th>
+        <th>Chat ID</th>
+        <th>Content</th>
+        <th>Created At</th>
+      </tr>
+      <% @user.messages.each do |message| %>
+        <tr>
+          <td><%= message.id %></td>
+          <td><%= message.chat_id %></td>
+          <td><%= message.body %></td>
+          <td><%= message.created_at %></td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+
+  <div class="text-center mt-4">
+    <%= link_to 'Back to Users', users_path, class: 'btn btn-primary' %>
+    <%= link_to 'Edit User', edit_user_path(@user), class: 'btn btn-secondary' %>
+  </div>
 </div>

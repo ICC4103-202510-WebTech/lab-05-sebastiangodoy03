@@ -3,7 +3,7 @@ class Chat < ApplicationRecord
     belongs_to :receiver, class_name: 'User', foreign_key: 'receiver_id'
     has_many :messages 
 
-    # Validaciones
+
     validates :sender_id, presence: true
     validates :receiver_id, presence: true
     validate :sender_and_receiver_must_be_different

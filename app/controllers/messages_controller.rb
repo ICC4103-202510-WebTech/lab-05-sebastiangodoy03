@@ -1,16 +1,16 @@
 class MessagesController < ApplicationController
+  before_action :set_message, only: [:show, :edit, :update]
+
   def index
     @messages = Message.all
   end
 
-  def show
-    @message = Message.find(params[:id])
-  end
-  
+
+
   def new
     @message = Message.new
   end
-  
+
   def create
     @message = Message.new(message_params)
     if @message.save
@@ -20,8 +20,23 @@ class MessagesController < ApplicationController
     end
   end
 
-  
-    private
+  def edit
+  end
+
+  def update
+    if @message.update(message_params)
+      redirect_to @message, notice: 'Message updated successfully.'
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
+  private
+
+  def set_message
+    @message = Message.find(params[:id])
+  end
+
   def message_params
     params.require(:message).permit(:chat_id, :user_id, :body)
   end
