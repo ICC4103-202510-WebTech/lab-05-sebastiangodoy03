@@ -10,6 +10,13 @@
     
     <%= render 'layouts/navbar' %>
     <div class="container mt-4">
+    <% flash.each do |key, value| %>
+    <% bootstrap_class = key == "alert" ? "danger" : "success" %>
+    <div class="alert alert-<%= bootstrap_class %> alert-dismissible fade show mt-3" role="alert">
+      <%= value %>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    <% end %>
       <%= yield %>
     </div>
   </body>

@@ -25,7 +25,9 @@
                 <%= link_to 'Show', user_path(user), class: 'btn btn-secondary btn-sm' %>
             </td>
             <td class="text-center">
-                <%= link_to 'Edit', edit_user_path(user), class: 'btn btn-warning btn-sm' %>
+                <% if can? :edit, user %>
+                    <%= link_to 'Edit', edit_user_path(user), class: 'btn btn-warning btn-sm' %>
+                <% end %>
             </td>
             </tr>
         <% end %>

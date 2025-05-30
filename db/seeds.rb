@@ -8,9 +8,10 @@ last_names = ['Kane', 'Salah', 'De Bruyne', 'Fernandes', 'Sterling', 'Rashford',
 # Crear usuarios
 10.times do |i|
   User.create!(
-    email: "user#{i+1}@example.com",
+    email: "user#{i}@example.com",
     first_name: first_names.sample,  
     last_name: last_names.sample, 
+    password: "password123"
   )
 end
 users = User.all

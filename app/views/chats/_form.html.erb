@@ -1,0 +1,29 @@
+<%= form_with(model: chat, local: true, class: "needs-validation") do |f| %>
+  <% if chat.errors.any? %>
+    <div class="alert alert-danger">
+      <ul>
+        <% chat.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="mb-3">
+    <%= f.label :sender_id, "Sender", class: "form-label" %>
+    <%= f.select :sender_id, User.all.collect { |u| ["#{u.first_name} #{u.last_name}", u.id] },
+                 { prompt: "Select sender" },
+                 class: "form-select" %>
+  </div>
+
+  <div class="mb-3">
+    <%= f.label :receiver_id, "Receiver", class: "form-label" %>
+    <%= f.select :receiver_id, User.all.collect { |u| ["#{u.first_name} #{u.last_name}", u.id] },
+                 { prompt: "Select receiver" },
+                 class: "form-select" %>
+  </div>
+
+  <div class="text-center">
+    <%= f.submit class: "btn btn-primary" %>
+  </div>
+<% end %>

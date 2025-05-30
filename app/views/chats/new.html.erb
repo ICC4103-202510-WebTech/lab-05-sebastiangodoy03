@@ -1,21 +1,2 @@
 <h1 class="text-center mb-4">New Chat</h1>
-
-<%= form_with(model: @chat, local: true, class: "needs-validation") do |f| %>
-  <div class="mb-3">
-    <%= f.label :sender_id, "Sender", class: "form-label" %>
-    <%= f.select :sender_id, User.all.collect { |u| [u.first_name + " " + u.last_name, u.id] }, 
-                 { prompt: "Select sender" }, 
-                 class: "form-select" %>
-  </div>
-
-  <div class="mb-3">
-    <%= f.label :receiver_id, "Receiver", class: "form-label" %>
-    <%= f.select :receiver_id, User.all.collect { |u| [u.first_name + " " + u.last_name, u.id] }, 
-                 { prompt: "Select receiver" }, 
-                 class: "form-select" %>
-  </div>
-
-  <div class="text-center">
-    <%= f.submit "Create Chat", class: "btn btn-primary" %>
-  </div>
-<% end %>
+<%= render 'form', chat: @chat %>
