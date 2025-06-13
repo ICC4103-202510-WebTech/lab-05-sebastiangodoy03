@@ -1,35 +1,34 @@
 <div class="container">
-    <h1 class="text-center"> Chat </h1>
-    <div class="table-responsive">
+  <h1 class="text-center">Chats</h1>
+  <div class="table-responsive">
     <table class="table table-striped table-bordered">
-        <thead class="thead-dark">
+      <thead class="thead-dark">
         <tr>
-            <th>Sender</th>
-            <th>Receiver</th>
-            <th>Details</th>
-            <th>Edit</th>
+          <th>Conversations with</th>
+          <th>Show</th>
+          <th>Edit</th>
         </tr>
-        </thead>
-        <tbody>
-        <tbody>
+      </thead>
+      <tbody>
         <% @chats.each do |chat| %>
-            <tr>
-                <td><%= "#{chat.sender.first_name} #{chat.sender.last_name}" %></td>
-                <td><%= "#{chat.receiver.first_name} #{chat.receiver.last_name}" %></td>
-                <td class="text-center">
-                    <%= link_to 'Show', chat_path(chat), class: 'btn btn-secondary btn-sm' %>
-                </td>
-                <td class="text-center">
-                    <% if can? :edit, chat %>
-                        <%= link_to 'Edit', edit_chat_path(chat), class: 'btn btn-warning btn-sm' %>
-                    <% end %>
-                </td>
-            </tr>
+          <tr>
+            <td>
+                <%= chat.other_participant(current_user).first_name %> <%= chat.other_participant(current_user).last_name %>
+            </td>
+            <td class="text-center">
+              <%= link_to 'Show', chat_path(chat), class: 'btn btn-secondary btn-sm' %>
+            </td>
+            <td class="text-center">
+              <% if can? :edit, chat %>
+                <%= link_to 'Edit', edit_chat_path(chat), class: 'btn btn-warning btn-sm' %>
+              <% end %>
+            </td>
+          </tr>
         <% end %>
-        </tbody>
+      </tbody>
     </table>
-    </div>
-    <div class="d-flex justify-content-center mb-3">
-        <%= link_to 'Add New Chat', new_chat_path, class: 'btn btn-primary' %>
-    </div>
+  </div>
+  <div class="d-flex justify-content-center mb-3">
+    <%= link_to 'Add New Chat', new_chat_path, class: 'btn btn-primary' %>
+  </div>
 </div>
